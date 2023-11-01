@@ -1,0 +1,23 @@
+{
+  "name": "@byteassign/freshdesk-react-appclient",
+  "version": "0.0.1-alpha1",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "license": "MIT",
+  "peerDependencies": {
+    "@byteassign/freshdesk-appclient": "^0.0.1-alpha1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@byteassign/freshdesk-appclient": "^0.0.1-alpha1",
+    "@types/react": "^18.2.35",
+    "react": "^18.2.0"
+  },
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "files": [
+    "./lib"
+  ]
+}
