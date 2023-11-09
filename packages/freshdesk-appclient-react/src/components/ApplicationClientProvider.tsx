@@ -1,19 +1,32 @@
 import { FreshdeskApplication } from "@byteassign/freshdesk-appclient";
-import React, { PropsWithChildren, useLayoutEffect, useState } from "react";
-import { ApplicationClientContext, ApplicationClientState } from "../contexts";
+import React, { PropsWithChildren, Provider, ReactElement, useLayoutEffect, useState } from "react";
+import { ApplicationClientContext } from "../context";
+import { ApplicationClientState } from "../context/types";
 
+// Initial state of the ApplicationClientProvider
 const initialState = {
     client: null,
     loading: false
 };
 
 /**
- * Represents the Freshdesk application client provider.
+ * `ApplicationClientProvider` manages and provides the Freshdesk application client state via React Context.
+ * It should be used to wrap the root component or any subtree that requires access to the application state.
+ *
+ * @component
+ * @example
+ * ```jsx
+ * // In your root component (e.g., App.jsx)
+ * const App = () => (
+ *   <ApplicationClientProvider>
+ *     <MainComponent />
+ *   </ApplicationClientProvider>
+ * );
+ * ```
  */
-export const ApplicationClientProvider: React.FC<PropsWithChildren> = ({ children }) => {
+export function ApplicationClientProvider({ children }: PropsWithChildren): JSX.Element {
     const [state, setState] = useState<ApplicationClientState>(initialState);
 
-    
     useLayoutEffect(() => {
         let isMounted = true;
 
@@ -43,7 +56,6 @@ export const ApplicationClientProvider: React.FC<PropsWithChildren> = ({ childre
                 }
             }
         }
-
         getClient();
 
         return (() => {
@@ -57,6 +69,13 @@ export const ApplicationClientProvider: React.FC<PropsWithChildren> = ({ childre
         </ApplicationClientContext.Provider>)
 }
 
+/**
+ * Initiates the Freshdesk application by acquiring it from the parent application's context. 
+ * If the `{{{appclient}}}` script is missing, the function will dynamically insert it 
+ * into the DOM.
+ *
+ * @returns `A promise that resolves to the FreshdeskApplication instance.`
+ */
 function loadAppclientScript(): Promise<FreshdeskApplication> {
     if ((typeof window.app !== 'undefined' || window.app !== 'null')) {
         if (typeof window.app.initialized === 'function') {

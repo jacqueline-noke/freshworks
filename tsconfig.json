@@ -28,10 +28,10 @@
         "packages/freshdesk-appclient/src/*"
       ],
       "@byteassign/freshdesk-react-appclient": [
-        "packages/freshdesk-react-appclient/src"
+        "packages/freshdesk-appclient-react/src"
       ],
       "@byteassign/freshdesk-react-appclient/*": [
-        "packages/freshdesk-react-appclient/src/*"
+        "packages/freshdesk-appclient-react/src/*"
       ],
     },
     "types": [

@@ -1,6 +1,6 @@
 {
-  "name": "@byteassign/freshdesk-react-appclient",
-  "version": "0.1.0-alpha.1",
+  "name": "@byteassign/freshdesk-appclient-react",
+  "version": "0.1.0-alpha.1a",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "license": "MIT",
